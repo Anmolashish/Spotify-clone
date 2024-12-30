@@ -86,3 +86,8 @@
 .p13 {
   padding: 10px 1px 10px 10px;
 }
+
+.no-decoration {
+  text-decoration: none;
+  color: white;
+}

@@ -17,6 +17,8 @@ body {
 .left {
   width: 20vw;
   gap: 15px;
+  display: flex;
+  padding: 10px 1px 10px 10px;
 }
 
 .right {
@@ -88,8 +90,9 @@ body {
 }
 
 .playlists {
+  display: flex;
   margin: 25px;
-  gap: 12px;
+  gap: 20px;
 }
 
 .playlist {
@@ -100,7 +103,7 @@ body {
   min-width: 140px;
   border-radius: 10px;
   transition: background-color 0.1s ease-in-out;
-
+  height: 210px;
   position: relative;
 }
 
@@ -187,7 +190,9 @@ html {
 .play-seek {
   width: 100%;
   height: 10%;
+  backdrop-filter: blur(10px);
   background-color: #080808b2;
+
   position: absolute;
   bottom: 0;
   border-radius: 0px 0px 14px 14px;
@@ -220,4 +225,330 @@ html {
   height: 10px;
   border-radius: 100%;
   background-color: #f7f7f7;
+}
+
+.arrow {
+  display: flex;
+}
+
+.hamburger {
+  display: none;
+}
+
+Link {
+  text-decoration: none;
+}
+
+.set-of-playlist:last-child {
+  margin-bottom: 100px;
+}
+
+.playlist-info {
+  height: 30vh;
+  position: relative;
+  /* position: relative;
+  top: 0;
+  left: 0;
+  width: 96%;
+  height: 30vh;
+  background-image: url("https://i.scdn.co/image/ab67616d00001e026404721c1943d5069f0805f3");
+
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(150px);
+  z-index: 10; */
+}
+
+.playlist-info-background {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 30vh;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: blur(150px);
+  z-index: 0;
+}
+
+.playlist-songs {
+  margin: 20px;
+  width: 96%;
+  height: fit-content;
+  margin-bottom: 100px;
+}
+
+.playlist-info-header {
+  margin: 20px;
+  width: 96%;
+  height: 25vh;
+  position: relative;
+}
+
+.playlist-container {
+  display: flex;
+  gap: 10px;
+}
+
+.playlist-info-image {
+  position: relative;
+  height: 25vh;
+  z-index: 10;
+}
+
+.playlist-info-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+/* .playlist-info-heading {
+} */
+
+.playlist-info-heading > label {
+  position: absolute;
+  font-size: smaller;
+  top: 10px;
+}
+
+.playlist-info-heading > h1 {
+  font-size: 6rem;
+  font-weight: 800;
+}
+
+.playlist-info-heading > p {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.playlist-info-text {
+  position: relative;
+  width: 79%;
+  height: 25vh;
+  z-index: 10;
+}
+
+.songs {
+  width: 100%;
+  border-spacing: 0px 8px;
+}
+
+.underline {
+  width: 100%; /* Ensures the underline spans the full width */
+  height: 2px; /* Adjust the height of the underline */
+  border-top: 1px solid #ccc; /* Adjust color and style as needed */
+  margin: 20px 0; /* Add margin for spacing */
+}
+
+.songs-heading-row > th {
+  padding: 20px;
+  border-bottom: 1px solid #ccc; /* Adjust color and thickness as needed */
+}
+
+.songs-title {
+  width: 80%;
+  text-align: start;
+  color: #bdbdbd;
+}
+
+.song-title {
+  width: 80%;
+  text-align: start;
+}
+
+td {
+  text-align: center;
+}
+
+.songs-row > td {
+  height: 54px;
+}
+
+.songs-row > td:first-child {
+  border-radius: 14px 0px 0px 14px;
+}
+
+.songs-row > td:last-child {
+  border-radius: 0px 14px 14px 0px;
+}
+
+.songs-row:hover {
+  background-color: #343434d0;
+}
+
+.artist-name {
+  margin-top: 3px;
+  font-size: 12px;
+  color: #bdbdbd;
+}
+
+.play-playlist {
+  height: 50px;
+  width: 100%;
+  position: relative;
+  display: flex;
+  gap: 25px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.play-playlist-button {
+  background-color: #3be276;
+  border-radius: 100%;
+  padding: 4px;
+  width: 40px;
+  height: 40px;
+  margin-left: 40px;
+}
+
+.like-playlist {
+  margin-right: 40px;
+}
+
+/* From Uiverse.io by catraco */
+.heart-container {
+  --heart-color: #3be276;
+  position: relative;
+  width: 30px;
+  height: 30px;
+  transition: 0.3s;
+}
+
+.heart-container .checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 20;
+  cursor: pointer;
+}
+
+.heart-container .svg-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heart-container .svg-outline,
+.heart-container .svg-filled {
+  fill: var(--heart-color);
+  position: absolute;
+}
+
+.heart-container .svg-filled {
+  animation: keyframes-svg-filled 1s;
+  display: none;
+}
+
+.heart-container .svg-celebrate {
+  position: absolute;
+  animation: keyframes-svg-celebrate 0.5s;
+  animation-fill-mode: forwards;
+  display: none;
+  stroke: var(--heart-color);
+  fill: var(--heart-color);
+  stroke-width: 2px;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-filled {
+  display: block;
+}
+
+.heart-container .checkbox:checked ~ .svg-container .svg-celebrate {
+  display: block;
+}
+
+@keyframes keyframes-svg-filled {
+  0% {
+    transform: scale(0);
+  }
+
+  25% {
+    transform: scale(1.2);
+  }
+
+  50% {
+    transform: scale(1);
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes keyframes-svg-celebrate {
+  0% {
+    transform: scale(0);
+  }
+
+  50% {
+    opacity: 1;
+    filter: brightness(1.5);
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+    display: none;
+  }
+}
+
+.close {
+  position: absolute;
+  display: none;
+}
+
+@media (max-width: 1100px) {
+  .left {
+    position: absolute;
+    width: 50vw;
+    height: 96vh;
+    background-color: black;
+    padding: 10px;
+    top: 0;
+    left: -100%;
+    z-index: 99;
+    transition: all 0.5s ease-in-out;
+  }
+
+  .right {
+    width: 94vw;
+  }
+
+  .arrow {
+    display: none;
+  }
+
+  .hamburger {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .close {
+    display: flex;
+    position: absolute;
+    z-index: 100;
+    top: 25px;
+    right: 25px;
+  }
+
+  .playlist-info-heading > h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+  }
+
+  .playlist-info-heading > label {
+    position: relative;
+  }
+}
+
+@media (max-width: 1400px) {
+  .playlists .playlist:nth-child(n + 3) {
+    /* Targets every 3rd playlist element and onwards */
+    background-color: green; /* Change background color as needed */
+  }
 }

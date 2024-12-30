@@ -1,5 +1,8 @@
-import ListOfPlaylist from "./ListOfPlaylist";
-import { useState } from "react";
+// import ListOfPlaylist from "./ListOfPlaylist";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import SongsContext from "../context/songs/SongContext";
+import { useContext } from "react";
 
 export default function Right() {
   const [click1, setClick1] = useState("false");
@@ -9,6 +12,17 @@ export default function Right() {
   const [playImage, setPlayImage] = useState(
     "https://img.icons8.com/ios-filled/50/play--v1.png"
   );
+  const song = useContext(SongsContext);
+
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // Navigate to the previous route
+  };
+
+  const handleNext = () => {
+    navigate(1); // Navigate to the next route
+  };
 
   function changeToGreen() {
     if (click1) {
@@ -17,7 +31,7 @@ export default function Right() {
     } else {
       setColor2("white");
       setClick1(true);
-    } // Change to green on click
+    }
   }
 
   function changeToGreen1() {
@@ -27,35 +41,63 @@ export default function Right() {
     } else {
       setColor1("white");
       setClick2(true);
-    } // Change to green on click
+    }
   }
 
   function playButton() {
     if (playImage === "https://img.icons8.com/ios-filled/50/play--v1.png") {
       setPlayImage("https://img.icons8.com/ios-filled/50/pause--v1.png");
+      song.playSong(song.currentSongIndex);
     } else {
       setPlayImage("https://img.icons8.com/ios-filled/50/play--v1.png");
+      song.pauseSong();
     }
+  }
+
+  useEffect(() => {
+    document.querySelector(".hamburger").addEventListener("click", () => {
+      document.querySelector(".left").style.left = "0";
+    });
+  });
+
+  function prevSong() {
+    song.handlePrevSong();
+  }
+
+  function nextSong() {
+    song.handleNextSong();
   }
 
   return (
     <div className="right flex justify direction p1">
       <div className="main-div grey border-radius">
         <div className="main-div-header border-radius-top flex align space-between">
-          <div className="arrow flex align m2-1 ">
+          <div className="arrow align m2-1 ">
             <img
               width="26 m2-1"
               className="invert"
               height="26"
               src="https://img.icons8.com/material-outlined/24/back--v1.png"
               alt="back--v1"
+              onClick={handleBack}
             />
+
             <img
               className="invert m2-1"
               width="26"
               height="26"
               src="https://img.icons8.com/material-rounded/24/forward.png"
               alt="forward"
+              onClick={handleNext}
+            />
+          </div>
+          <div className="hamburger">
+            <img
+              className="invert"
+              width="30"
+              height="30"
+              src="https://img.icons8.com/ios-filled/50/menu--v1.png"
+              alt="menu--v1"
             />
           </div>
           <div className="buttons flex align">
@@ -63,12 +105,9 @@ export default function Right() {
             <div className="login border-radius flex align m2-1">Log In</div>
           </div>
         </div>
+
         <div className="songs-data">
-          <ListOfPlaylist heading="Spotify Playlists" />
-          <ListOfPlaylist heading="Popular Albums" />
-          <ListOfPlaylist heading="Popular Radio" />
-          <ListOfPlaylist heading="Featured Charts" />
-          <ListOfPlaylist heading="Trending Episode" />
+          <Outlet />
         </div>
         <div className="play-seek flex align">
           <div className="seekbar">
@@ -105,12 +144,12 @@ export default function Right() {
             </div>
           </div>
           <div className="song-change flex justify align">
-            <div className="flex justify align">
+            <div className="flex justify align" onClick={prevSong}>
               <img
                 width="25"
                 height="25"
                 className="invert"
-                src="Images/previous.png"
+                src="./Images/previous.png"
                 alt="previous"
               />
             </div>
@@ -120,12 +159,12 @@ export default function Right() {
             >
               <img width="25" height="25" src={playImage} alt="play--v1" />
             </div>
-            <div className="flex justify align">
+            <div className="flex justify align" onClick={nextSong}>
               <img
                 width="25"
                 height="25"
                 className="invert"
-                src="Images/next-button.png"
+                src="./Images/next-button.png"
                 alt="previous"
               />
             </div>
